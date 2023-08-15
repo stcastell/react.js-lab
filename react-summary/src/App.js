@@ -1,21 +1,25 @@
 import './App.css';
-import React, { Fragment } from 'react';
+import React from 'react';
 import Post from './componets/Post';
-
-const App = () => { 
+import PostInput from './componets/PostInput';
+const App = () => {
 
   const postDataBase = [
-    { author: 'Santiago', message: 'Hola a todos, como están?' },
-    { author: 'Rhoynarr', message: 'Todo bien! a quien cazamos hoy?' },
-    { author: 'Sadoc', message: 'Consigan chamba xd' },
+    { author: 'Santiago', post: 'Hola a todos, como están?', id:1 },
+    { author: 'Rhoynarr', post: 'Todo bien! a quien cazamos hoy?', id: 2 },
+    { author: 'Sadoc', post: 'Consigan chamba xd', id: 3 },
   ]
 
   return (
-    <Fragment>
-      <Post postAuthor={postDataBase[0].author} postMessage={postDataBase[0].message} />
-      <Post postAuthor={postDataBase[1].author} postMessage={postDataBase[1].message} />
-      <Post postAuthor={postDataBase[2].author} postMessage={postDataBase[2].message} />
-    </Fragment>
+    <>
+      <div className='input-zone'>
+        <PostInput />
+      </div>
+      <div className='feed-zone'>
+        <Post data={postDataBase}/>
+      </div>
+
+    </>
   )
 }
 

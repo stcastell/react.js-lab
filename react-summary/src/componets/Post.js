@@ -1,13 +1,18 @@
 import React from 'react';
 import './Post.css';
 
-const Post = props => { 
+const Post = props => {
 
     return (
-        <div className='post'>
-            <h3 className='post-author'>{props.postAuthor}</h3>
-            <p className='post-message'>{props.postMessage}</p>
-        </div>
+        <ul>
+            {props.data.map(item => (
+                <li className='post' key={item.id}>
+                    <h3 className='post-author'>{item.author}</h3>
+                    <p className='post-message'>{item.post}</p>
+                </li>
+            ))}
+            
+        </ul>
     )
 }
 
