@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import './PostInput.css';
+import React, { useState } from 'react';
+import styles from './PostInput.module.css';
 
-const PostInput = props => { 
+const PostInput = props => {
     const [user, setUser] = useState('');
-    const userChangeHandler = e => { 
+    const userChangeHandler = e => {
         setUser(e.target.value);
     }
 
@@ -12,22 +12,39 @@ const PostInput = props => {
         setPost(e.target.value);
     }
 
-    const clickHandler = () => { 
-        props.onAddItem({author:user, post:post, id:Math.random()})
+    const submitHandler = e => {
+        e.preventDefault();
+        props.onAddItem({ author: user, post: post, id: Math.random() });
+        setUser('');
+        setPost('');
     }
 
+    const cancelClickHandler = () => {
+        props.onActivatePostInput(false);
+    }
+
+
+
     return (
-        <div className='post-input-container'>
+        <form className={styles['post-input-container']} onSubmit={submitHandler}>
 
-            <label htmlFor='username'>Username:</label>
-            <input id='username' type='text' placeholder='Username' onChange={userChangeHandler}></input><br/>
-
-            <label htmlFor='post'>Post:</label>
-            <input id='post' type='text' placeholder='Type your post here!' onChange={postChangeHandler}></input><br />
             
-            <button onClick={clickHandler}>Post</button>
+            <label htmlFor='username'>Username:</label>
+            <input required id='username' type='text' placeholder='Username' onChange={userChangeHandler} value={user}></input><br />
 
-        </div>
+            
+            <label htmlFor='post'>Post:</label>
+            <input required id='post' type='text' placeholder='Type your post here!' onChange={postChangeHandler} value={post}></input><br />
+
+            
+            <div className={styles['input-button-container']}>
+                <button type='submit' className={styles.post}>Post</button>
+
+                <button className={styles.cancel} onClick={cancelClickHandler}>Cancel</button>
+            </div>
+
+
+        </form>
     );
 }
 

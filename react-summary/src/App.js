@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import Post from './componets/Post';
 import PostInput from './componets/PostInput';
+import Header from './componets/Header';
 const App = () => {
 
   let postDataBase = [
@@ -12,17 +13,31 @@ const App = () => {
   
   const [stateDB, setStateDB] = useState(postDataBase);
 
+  const [isPosting, setIsPosting] = useState(false);
+
   const addItemHandler = item => {
     setStateDB(prev => { 
       return ([...prev, item]);
     });
   };
 
+  const activatePostInputHandler = e => { 
+    setIsPosting(e);
+  }
+
   return (
     <>
       <div className='input-zone'>
-        <PostInput onAddItem={addItemHandler}/>
+
+        {isPosting
+          ?
+          <PostInput onAddItem={addItemHandler} onActivatePostInput={activatePostInputHandler} />
+          :
+          <Header onActivatePostInput={activatePostInputHandler} />
+        }
+        
       </div>
+
       <div className='feed-zone'>
         <Post data={stateDB} />
       </div>
