@@ -1,4 +1,4 @@
-import './Header.css';
+import styles from  './Header.module.css';
 
 const Header = props => { 
 
@@ -7,9 +7,9 @@ const Header = props => {
     }
 
     return (
-        <>
-            <button onClick={clickHandler}>Add new post</button>
-        </>
+        <div className={styles.header_container}>
+            <button className={styles.add_post_button} onClick={clickHandler}>Add new post</button>
+        </div>
     );
 }
 

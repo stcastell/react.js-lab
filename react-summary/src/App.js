@@ -1,24 +1,37 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Post from './componets/Post';
 import PostInput from './componets/PostInput';
 import Header from './componets/Header';
 const App = () => {
 
-  let postDataBase = [
-    { author: 'Santiago', post: 'Hola a todos, como están?', id:1 },
-    { author: 'Rhoynarr', post: 'Todo bien! a quien cazamos hoy?', id: 2 },
-    { author: 'Sadoc', post: 'Consigan chamba xd', id: 3 },
-  ]
-  
-  const [stateDB, setStateDB] = useState(postDataBase);
+  const [stateDB, setStateDB] = useState([]);
+
+  useEffect(() => {
+    async function fetchAPI() {
+      const response = await fetch('http://localhost:8080/posts');
+      const responseJSON = await response.json();
+      setStateDB(responseJSON.posts);
+    }
+    fetchAPI();
+  }, []);
 
   const [isPosting, setIsPosting] = useState(false);
 
   const addItemHandler = item => {
+
+    fetch('http://localhost:8080/posts', {
+      method: 'POST',
+      body: JSON.stringify(item),
+      headers: {
+        "Content-Type": "application/json",
+      }
+
+    });
     setStateDB(prev => { 
       return ([...prev, item]);
     });
+
   };
 
   const activatePostInputHandler = e => { 
