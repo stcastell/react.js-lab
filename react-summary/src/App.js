@@ -6,12 +6,15 @@ import Header from './componets/Header';
 const App = () => {
 
   const [stateDB, setStateDB] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     async function fetchAPI() {
+      setIsFetching(true);
       const response = await fetch('http://localhost:8080/posts');
       const responseJSON = await response.json();
       setStateDB(responseJSON.posts);
+      setIsFetching(false);
     }
     fetchAPI();
   }, []);
@@ -52,7 +55,12 @@ const App = () => {
       </div>
 
       <div className='feed-zone'>
-        <Post data={stateDB} />
+        {isFetching ? 
+          <h2 style={{display:'grid', placeItems:'center', color:'white'}}>Loading posts...</h2>
+          :
+          <Post data={stateDB} />
+        }
+        
       </div>
 
     </>

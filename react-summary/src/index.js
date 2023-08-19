@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import PostInput from './componets/PostInput';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const routes = createBrowserRouter([
+  { path: '/', element: <App /> },
+  {path:'/add-post', element:<PostInput/>}
+]);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={routes}/>
   </React.StrictMode>
 );
 
