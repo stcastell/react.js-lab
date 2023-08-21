@@ -1,21 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {RouterProvider, createBrowserRouter} from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import PostInput from './componets/PostInput';
+import MainLayout from './routes/MainLayout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const routes = createBrowserRouter([
-  { path: '/', element: <App /> },
-  {path:'/add-post', element:<PostInput/>}
+  {
+    path: '/', element: <MainLayout />, children:
+    [
+      { path: '/', element: <App /> },
+      { path: '/add-post', element: <PostInput />},
+    ]
+  }
+
 ]);
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={routes}/>
+    <RouterProvider router={routes} />
   </React.StrictMode>
 );
 
