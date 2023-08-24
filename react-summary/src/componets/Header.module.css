@@ -1,4 +1,4 @@
-.header_container{
+.header_container {
     width: 100%;
     height: 100px;
     display: grid;
@@ -6,7 +6,12 @@
 
 }
 
-.add_post_button{
+.add_post_button {
     background-color: rgb(83, 73, 172);
     color: white;
+    text-decoration: none;
+    padding: 15px;
+    border: 0px solid white;
+    border-radius: 15px;
+    font-weight: bold;
 }

@@ -44,12 +44,9 @@ const App = () => {
   return (
     <>
       <div className='input-zone'>
-
-        {isPosting
-          ?
-          <PostInput onAddItem={addItemHandler} onActivatePostInput={activatePostInputHandler} />
-          :
-          <Header onActivatePostInput={activatePostInputHandler} />
+        <Header onActivatePostInput={activatePostInputHandler} />
+        
+        {isPosting && <PostInput onAddItem={addItemHandler} onActivatePostInput={activatePostInputHandler} />
         }
         
       </div>
