@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import Post from './componets/Post';
-import PostInput from './componets/PostInput';
-import Header from './componets/Header';
+import Post from './Post';
+import PostInput from '../routes/PostInput';
+import Header from './Header';
 const App = () => {
 
   const [stateDB, setStateDB] = useState([]);
@@ -37,20 +37,8 @@ const App = () => {
 
   };
 
-  const activatePostInputHandler = e => { 
-    setIsPosting(e);
-  }
-
   return (
     <>
-      <div className='input-zone'>
-        <Header onActivatePostInput={activatePostInputHandler} />
-        
-        {isPosting && <PostInput onAddItem={addItemHandler} onActivatePostInput={activatePostInputHandler} />
-        }
-        
-      </div>
-
       <div className='feed-zone'>
         {isFetching ? 
           <h2 style={{display:'grid', placeItems:'center', color:'white'}}>Loading posts...</h2>

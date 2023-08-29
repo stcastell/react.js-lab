@@ -1,15 +1,17 @@
 import styles from './Header.module.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Header = props => { 
 
-    // const clickHandler = () => { 
-    //     props.onActivatePostInput(true);
-    // }
+    const route = useNavigate();
+
+    const clickHandler = () => { 
+        route('./add-post');
+    }
 
     return (
         <div className={styles.header_container}>
-            <Link to='/add-post' className={styles.add_post_button} /*onClick={clickHandler}*/>Add new post</Link>
+            <button to='./add-post' className={styles.add_post_button} onClick={clickHandler}>Add new post</button>
         </div>
     );
 }
