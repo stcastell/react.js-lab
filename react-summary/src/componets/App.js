@@ -21,21 +21,6 @@ const App = () => {
 
   const [isPosting, setIsPosting] = useState(false);
 
-  const addItemHandler = item => {
-
-    fetch('http://localhost:8080/posts', {
-      method: 'POST',
-      body: JSON.stringify(item),
-      headers: {
-        "Content-Type": "application/json",
-      }
-
-    });
-    setStateDB(prev => { 
-      return ([...prev, item]);
-    });
-
-  };
 
   return (
     <>

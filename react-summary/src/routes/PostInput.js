@@ -1,47 +1,27 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Form, redirect } from 'react-router-dom';
 import styles from './PostInput.module.css';
 
 const PostInput = props => {
 
     const cancelRoute = useNavigate();
 
-    const [user, setUser] = useState('');
-    const userChangeHandler = e => {
-        setUser(e.target.value);
-    }
-
-    const [post, setPost] = useState('');
-    const postChangeHandler = e => {
-        setPost(e.target.value);
-    }
-
-    const submitHandler = e => {
-        e.preventDefault();
-        props.onAddItem({ author: user, post: post, id: Math.random() });
-        setUser('');
-        setPost('');
-        props.onActivatePostInput(false);
-    }
-
     const cancelClickHandler = () => {
-        // props.onActivatePostInput(false);
-        cancelRoute('..');
+        cancelRoute('/');
     }
 
 
 
     return (
         <div className={styles.post_input_container}>
-            <form className={styles['post-input']} onSubmit={submitHandler}>
+            <Form method='post' className={styles['post-input']}>
 
 
                 <label htmlFor='username'>Username:</label>
-                <input required id='username' type='text' placeholder='Username' onChange={userChangeHandler} value={user}></input><br />
+                <input required id='username' name='author' type='text' placeholder='Username'></input><br />
 
 
                 <label htmlFor='post'>Post:</label>
-                <input required id='post' type='text' placeholder='Type your post here!' onChange={postChangeHandler} value={post}></input><br />
+                <input required id='post' name='post' type='text' placeholder='Type your post here!'></input><br />
 
 
                 <div className={styles['input-button-container']}>
@@ -51,10 +31,26 @@ const PostInput = props => {
                 </div>
 
 
-            </form>
+            </Form>
         </div>
 
     );
 }
 
 export default PostInput;
+
+export async function action({ request }) { 
+    
+    const formData = await request.formData();
+    const postData = Object.fromEntries(formData);
+
+    await fetch('http://localhost:8080/posts', {
+        method: 'POST',
+        body: JSON.stringify(postData),
+        headers: {
+            "Content-Type": "application/json",
+        }
+
+    });
+    return (redirect('/'));
+}

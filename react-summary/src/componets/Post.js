@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Post.css';
 
 const Post = props => {
@@ -7,11 +8,13 @@ const Post = props => {
         <ul>
             {props.data.map(item => (
                 <li className='post' key={item.id}>
-                    <h3 className='post-author'>{item.author}</h3>
-                    <p className='post-message'>{item.post}</p>
+                    <Link className='link' to={item.id}>
+                        <h3 className='post-author'>{item.author}</h3>
+                        <p className='post-message'>{item.post}</p>
+                    </Link>
                 </li>
             ))}
-            
+
         </ul>
     )
 }

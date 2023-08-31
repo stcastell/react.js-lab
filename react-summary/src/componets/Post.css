@@ -7,8 +7,12 @@
     }
 }
 .post{
-    color: rgb(235, 235, 235);
     padding: 15px;
     border-bottom: 1px solid rgb(88, 88, 88);
     animation: appear 500ms;
+}
+
+.link{
+    color: rgb(235, 235, 235);
+    text-decoration: none;
 }
