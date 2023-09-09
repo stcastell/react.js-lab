@@ -280,7 +280,6 @@ main {
   display: inline-block;
   font-size: 0.85rem;
   margin-left: 0.25rem;
-  transition: 500ms transform ease;
 }
 
 .challenge-item-details.expanded .challenge-item-details-icon {
@@ -307,7 +306,7 @@ main {
   background-color: #0f3cef;
 }
 
-@keyframes modal-in {
+/* @keyframes modal-in {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -317,7 +316,7 @@ main {
     opacity: 1;
     transform: translateY(0px);
   }
-}
+} */
 
 .modal {
   top: 10%;
@@ -326,7 +325,7 @@ main {
   width: 30rem;
   max-width: 90%;
   z-index: 10;
-  animation: modal-in 500ms ease forwards;
+  /* animation: modal-in 500ms ease forwards; */
 }
 
 .modal h2 {
