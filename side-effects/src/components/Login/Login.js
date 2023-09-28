@@ -70,7 +70,7 @@ const Login = (props) => {
       if (!emailState.isValid) {
         emailRef.current.focus();
       } else if (!passwordState.isValid) {
-        passwordRef.current.focus()
+        passwordRef.current.focus();
       }
     } else { 
       props.onLogin(emailState.value, passwordState.value);
